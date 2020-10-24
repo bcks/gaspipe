@@ -1,0 +1,555 @@
+:root {
+  --border: 15px;
+  --radius: 50px;
+}
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+.A {
+  position: relative;
+  height: 100%;
+  border-width: var(--border) var(--border) 0 var(--border);
+  border-style: solid;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+.A:before {
+  position: absolute;
+  content: '';
+  top: calc( 50% - var(--border) );
+  left: 0;
+  width: 100%;
+  height: var(--border);
+  border-top: var(--border) solid;
+}
+.B {
+  position: relative;
+  height: 100%;
+}
+.B:before {
+  position: absolute;
+  content: '';
+  top: calc(50% - calc( var(--border) / 2 ) );
+  left: 0;
+  width: 100%;
+  height: calc(50% + calc( var(--border) / 2 ) );
+  border-width: var(--border);
+  border-radius: 0 var(--radius) var(--radius) 0 ;
+  border-style: solid;
+}
+.B:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  width: 100%;
+  left: 0;
+  height: calc(50% + calc( var(--border) / 2 ) );
+  border-width: var(--border);
+  border-radius: 0 var(--radius) var(--radius) 0 ;
+  border-style: solid;
+}
+.C {
+  position: relative;
+  width: calc(100% + var(--border));
+  top: 0;
+  height: 50%;
+  transform: translate(0,50%);
+  border-left: solid var(--border);
+}
+.C:after {
+  position: absolute;
+  content: '';
+  top: -50%;
+  left: calc( var(--border) * -1 );
+  width: 100%;
+  height: calc(50% + 1px);
+  border-width: var(--border) var(--border) 0 var(--border);
+  border-style: solid;
+  border-radius: var(--radius) var(--radius) 0 0 ;
+}
+.C:before {
+  position: absolute;
+  content: '';
+  bottom: -50%;
+  left: calc( var(--border) * -1 );
+  width: 100%;
+  height: 50%;
+  border-width: 0 var(--border) var(--border) var(--border);
+  border-style: solid;
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+.D {
+  position: relative;
+  height: 100%;
+}
+.D:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-width: var(--border);
+  border-radius: 0 var(--radius) var(--radius) 0 ;
+  border-style: solid;
+}
+.E {
+  position: relative;
+  height: 100%;
+  border-width: var(--border) 0 var(--border) var(--border);
+  border-style: solid;
+}
+.E:before {
+  position: absolute;
+  content: '';
+  top: calc(50% - var(--border) / 2 );
+  left: 0;
+  width: 75%;
+  border-bottom: solid var(--border);
+}
+.F {
+  position: relative;
+  height: 100%;
+  border-width: var(--border) 0 0 var(--border);
+  border-style: solid;
+}
+.F:before {
+  position: absolute;
+  content: '';
+  top: calc(50% - var(--border) );
+  left: 0;
+  width: 75%;
+  border-bottom: solid var(--border);
+}
+.G {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  border-width: 0 0 var(--border) var(--border);
+  border-style: solid;
+  border-radius: var(--radius) 0 0 var(--radius) ;
+}
+.G:before {
+  position: absolute;
+  content: '';
+  bottom: calc( ( var(--border) * -1 ) );
+  top: calc(50% + calc( var(--border) / 2 ));
+  left: calc(100%);
+  width: calc(100% + var(--border));
+  height: calc(50% + calc( var(--border) / 2 ));
+  border-width: var(--border) var(--border) var(--border) 0;
+  border-style: solid;
+  border-radius: 0 0 var(--radius) 0;
+}
+.G:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: calc( var(--border) * -1 );
+  width: calc(200% + calc( var(--border) * 2 ) );
+  height: 25%;
+  border-width: var(--border) var(--border) 0 var(--border);
+  border-style: solid;
+  border-radius: var(--radius) var(--radius) 0 0 ;
+}
+.H {
+  position: relative;
+  height: 100%;
+  border-width: 0 var(--border) 0 var(--border);
+  border-style: solid;
+}
+.H:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(50% + calc( var(--border) / 2 ) ););
+  border-width: 0 0 var(--border) 0;
+  border-style: solid;
+}
+.I {
+  position: relative;  
+  height: 100%;
+  border-left: solid var(--border);
+}
+.J {
+  position: relative;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 66.666%;
+  border-right: var(--border) solid;
+}
+.J:before {
+  position: absolute;
+  content: '';
+  bottom: -50%;
+  right: calc(  var(--border) / -1 ) ;
+  width: calc(100% + calc(  var(--border) / 2 ) );
+  height: calc(50% );
+  border-width: 0 var(--border) var(--border) var(--border);
+  border-style: solid;
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+.K {
+  position: relative;
+  height: 100%;
+}
+.K:before {
+  position: absolute;
+  content: '';
+  top: calc(50% - calc(  var(--border) / 2 ) );
+  left: 0;
+  width: 100%;
+  height: calc(50% + calc(  var(--border) / 2 ) );
+  border-width: var(--border) var(--border) 0 var(--border);
+  border-radius: 0 var(--radius) 0 0 ;
+  border-style: solid;
+}
+.K:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  width: 100%;
+  left: 0;
+  height: calc(50% + calc(  var(--border) / 2 ) );
+  border-width: 0 var(--border) var(--border) var(--border);
+  border-radius: 0 0 var(--radius) 0 ;
+  border-style: solid;
+}
+.L {
+  position: relative;
+  height: 100%;
+  border-width: 0 0 var(--border) var(--border);
+  border-style: solid;
+}
+.M {
+  position: relative;
+  height: 100%;
+}
+.M:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: calc(50% + calc( var(--border) / 2 ) ););
+  height: 100%;
+  border-width: var(--border) var(--border) 0 var(--border);
+  border-radius: var(--radius) var(--radius) 0 0 ;
+  border-style: solid;
+}
+.M:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: calc(50% - calc( var(--border) / 2 ) ););
+  width: calc(50% + calc( var(--border) / 2 ) ););
+  height: 100%;
+  border-width: var(--border) var(--border) 0 var(--border);
+  border-radius: var(--radius) var(--radius) 0 0 ;
+  border-style: solid;
+}
+.N {
+  position: relative;
+  height: 100%;
+}
+.N:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-width: var(--border) var(--border) 0 var(--border);
+  border-radius: 0 var(--radius) 0 0 ;
+  border-style: solid;
+}
+.O {
+  position: relative;
+  height: 100%;
+}
+.O:before {
+  position: absolute;
+  content: '';
+  top: -2px;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 4px);
+  border-width: var(--border);
+  border-radius: var(--radius);
+  border-style: solid;
+}
+.P {
+  position: relative;
+  height: 100%;
+}
+.P:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  width: 100%;
+  left: 0;
+  height: calc(50% +  ( var(--border) / 2 ) );
+  border-width: var(--border);
+  border-radius: 0 var(--radius) var(--radius) 0 ;
+  border-style: solid;
+}
+.P:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-left: solid var(--border);
+}
+.Q {
+  position: relative;
+  height: 100%;
+}
+.Q:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: calc(100% - ( var(--border) / 2 ) );
+  height: 100%;
+  border-width: var(--border);
+  border-radius: var(--radius);
+  border-style: solid;
+}
+.Q:after {
+  position: absolute;
+  content: '';
+  bottom: 0;
+  right: 0;
+  width: calc(50% + ( var(--border) / 4 ));
+  height: 0;
+  border-top: solid var(--border);
+}
+.R {
+  position: relative;
+  height: 100%
+}
+.R:before {
+  position: absolute;
+  content: '';
+  top: calc(50% - calc( var(--border) / 2 ) ););
+  left: 0;
+  width: 100%;
+  height: calc(50% + calc( var(--border) / 2 ) ););
+  border-width: var(--border) var(--border) 0 var(--border);
+  border-radius: 0 var(--radius) 0 0 ;
+  border-style: solid;
+}
+.R:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  width: 100%;
+  left: 0;
+  height: calc(50% + calc( var(--border) / 2 ) ););
+  border-width: var(--border);
+  border-radius: 0 var(--radius) var(--radius) 0 ;
+  border-style: solid;
+}
+.S {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border-top: var(--border) solid;
+  border-bottom: var(--border) solid;
+  border-radius: var(--radius) 0 var(--radius) 0;
+}
+.S:before {
+  position: absolute;
+  content: '';
+  top: calc( var(--border) * -1 );
+  left: 0;
+  width: calc(50% + calc( var(--border) / 4  ));
+  height: calc( 50% + calc( var(--border) / 2 * 3 ) );
+  border-width: var(--border) 0 var(--border) var(--border);
+  border-radius: var(--radius) 0 0 var(--radius);
+  border-style: solid;
+}
+.S:after {
+  position: absolute;
+  content: '';
+  top: calc(50% - calc( var(--border) / 2 ) );
+  right: 0;
+  width: calc(50% + calc( var(--border) / 4  ));
+  height: calc( 50% + calc( var(--border) / 2 * 3 ) );
+  border-width: var(--border) var(--border) var(--border) 0;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  border-style: solid;
+}
+.T {
+  position: relative;
+  height: 100%;
+}
+.T:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-width: var(--border) 0 0 0 ;
+  border-style: solid;
+}
+.T:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: calc(50% + calc( var(--border) / 2 ) ););
+  border-width: 0 var(--border) 0 0;
+  border-style: solid;
+}
+.U {
+  position: relative;
+  height: 100%;
+}
+.U:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-width: 0 var(--border) var(--border) var(--border);
+  border-radius: 0 0 var(--radius) var(--radius);
+  border-style: solid;
+}
+.V {
+  position: relative;
+  height: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  border-left: var(--border) solid;
+}
+.V:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-width: 0 var(--border) var(--border) 0;
+  border-radius: 0 0 var(--radius) 0;
+  border-style: solid;
+}
+.W {
+  position: relative;
+  height: 100%;
+}
+.W:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: calc(50% + calc( var(--border) / 2 ) ););
+  height: 100%;
+  border-width: 0 var(--border) var(--border) var(--border);
+  border-radius: 0 0 var(--radius) var(--radius);
+  border-style: solid;
+}
+.W:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: calc(50% - calc( var(--border) / 2 ) ););
+  width: calc(50% + calc( var(--border) / 2 ) ););
+  height: 100%;
+  border-width: 0 var(--border) var(--border) var(--border);
+  border-radius: 0 0 var(--radius) var(--radius);
+  border-style: solid;
+}
+.X {
+  position: relative;
+  height: 100%;
+}
+.X:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(50% + calc( var(--border) / 2 ) ););
+  border-width: 0 var(--border) var(--border) var(--border);
+  border-radius: 0 0 var(--radius) var(--radius);
+  border-style: solid;
+}
+.X:after {
+  position: absolute;
+  content: '';
+  top: calc(50% - calc( var(--border) / 2 ) ););
+  left: 0;
+  width: 100%;
+  height: calc(50% + calc( var(--border) / 2 ) ););
+  border-width: var(--border) var(--border) 0 var(--border);
+  border-radius: var(--radius) var(--radius) 0 0 ;
+  border-style: solid;
+}
+.Y {
+  position: relative;
+  height: 75%;
+  width: 100%;
+  border-right: var(--border) solid;
+}
+.Y:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  right: calc( var(--border) * -1 );
+  width: calc(100% + var(--border));
+  height: calc(75% - calc(var(--border) / 3 ));
+  border-width: 0 var(--border) var(--border) var(--border);
+  border-radius: 0 0 var(--radius) var(--radius);
+  border-style: solid;
+}
+.Y:after {
+  position: absolute;
+  content: '';
+  bottom: -33%;
+  right: calc( var(--border) * -1 );
+  width: calc(100% + calc( var(--border) / 2 ));
+  height: 50%;
+  border-width: 0 var(--border) var(--border) var(--border);
+  border-radius: 0 0 var(--radius) var(--radius);
+  border-style: solid;
+}
+.Z {
+  position: relative;
+  height: 100%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  border-top: var(--border) solid;
+  border-bottom: var(--border) solid;
+}
+.Z:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: calc(50% + calc( var(--border) / 2 ) ););
+  border-width: 0 var(--border) var(--border) 0 ;
+  border-radius: 0 0 var(--radius) 0;
+  border-style: solid;
+}
+.Z:after {
+  position: absolute;
+  content: '';
+  top: calc(50% - calc( var(--border) / 2 ) ););
+  left: 0;
+  width: 50%;
+  height: calc(50% + calc( var(--border) / 2 ) ););
+  border-width: var(--border) 0 0 var(--border);
+  border-radius: var(--radius) 0 0 0;
+  border-style: solid;
+}

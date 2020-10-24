@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link href = "../lib/jquery-ui.min.css" rel = "stylesheet">
+  <link rel="stylesheet"type="text/css" href="../css/gaspipe.css" />
+  <style>
+    html, body { height: 100%; }
+    body { margin: 0; background: #000; }
+    #container {
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;      
+    }
+
+    .letter div, .letter div:before, .letter div:after { border-color: #fff; }
+     #grid {
+      background: #aef;
+      padding: 1rem;
+      display: flex;
+      flex-wrap: nowrap;
+      width: 600px;
+      height: 90px;
+      margin: auto;
+      animation-name: myanimation;
+      animation-duration: 8s;
+     }
+     @keyframes myanimation {
+      0% { width: 600px; height: 90px; }
+      25% { width: 1400px; height: 90px; }
+      50% { width: 1400px; height: 600px; }
+      75% { width: 600px; height: 600px; }
+      90% { width: 600px; height: 90px; }
+     }
+     
+    .letter {       
+      height: 100%;
+      margin: 2px;
+      min-height: 50px;
+      flex: 1;
+    }
+    .letter div, .letter div:before, .letter div:after { border-color: #00f; }
+    .lI { flex: .25; }
+    .lQ { flex: 1.25; }
+    .lW, .lM { flex: 1.75; }
+  </style>
+</head>
+<body>
+
+<div id="container">
+<div id="grid">
+
+  <div class="letter"><div class="B"></div></div>
+  <div class="letter"><div class="E"></div></div>
+
+  <div class="letter"><div class=" "></div></div>
+
+  <div class="letter"><div class="L"></div></div>
+  <div class="letter lI"><div class="I"></div></div>
+  <div class="letter"><div class="K"></div></div>
+  <div class="letter"><div class="E"></div></div>
+
+  <div class="letter"><div class=" "></div></div>
+
+  <div class="letter lW"><div class="W"></div></div>
+  <div class="letter"><div class="A"></div></div>
+  <div class="letter"><div class="T"></div></div>
+  <div class="letter"><div class="E"></div></div>
+  <div class="letter"><div class="R"></div></div>
+
+</div>
+</div>
+</body>
+</html>

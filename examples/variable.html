@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link href = "../lib/jquery-ui.min.css" rel = "stylesheet">
+  <style id="style"></style>
+  <style>
+    body { margin: 0; padding: 0; font-family: sans-serif; }
+    .quarter {
+      margin-bottom: 1rem;
+      padding: .5rem;
+    }
+    @media only screen and (min-width: 600px) {
+      .quarter {
+        width: 25%;
+        float: left;
+      }
+    }
+    .ui-icon{ background-image:url("../lib/images/ui-icons_cc0000_256x240.png"); }
+    .ui-slider-horizontal { height:1px; margin-top: .25rem; }
+    .ui-slider .ui-slider-handle { width: 10px; height: 10px; background: #666; border-color: #666; }
+    .ui-icon-gripsmall-diagonal-se { opacity: 0; transition: .25s opacity; }
+    .letter:hover .ui-icon-gripsmall-diagonal-se { opacity: 1; }
+    #text { width: calc(100% - 6px); }
+  </style>
+  <script src="../lib/jquery.min.js"></script>
+  <script src="../lib/jquery-ui.min.js"></script>
+  <script src="../lib/handlebars-v4.0.11.js"></script>
+</head>
+<body>
+
+<input type="text" id="text" placeholder="Type Your Message Here">
+
+<div class="quarter">
+  Border:
+  <span id="border"></span>
+  <div id="slider-border"></div>
+</div>
+<div class="quarter">
+  Radius:
+  <span id="radius"></span>
+  <div id="slider-radius"></div>
+</div>
+<div class="quarter">
+  Height:
+  <span id="height"></span>
+  <div id="slider-height"></div>
+</div>
+<div class="quarter">
+  Width:
+  <span id="width"></span>
+  <div id="slider-width"></div>
+</div>
+
+<div id="grid">
+  <div class="letter lA"><div class="A"></div></div>
+  <div class="letter lB"><div class="B"></div></div>
+  <div class="letter lC"><div class="C"></div></div>
+  <div class="letter lD"><div class="D"></div></div>
+  <div class="letter lE"><div class="E"></div></div>
+  <div class="letter lF"><div class="F"></div></div>
+  <div class="letter lG"><div class="G"></div></div>
+  <div class="letter lH"><div class="H"></div></div>
+  <div class="letter lI"><div class="I"></div></div>
+  <div class="letter lJ"><div class="J"></div></div>
+  <div class="letter lK"><div class="K"></div></div>
+  <div class="letter lL"><div class="L"></div></div>
+  <div class="letter lM"><div class="M"></div></div>
+  <div class="letter lN"><div class="N"></div></div>
+  <div class="letter lO"><div class="O"></div></div>
+  <div class="letter lP"><div class="P"></div></div>
+  <div class="letter lQ"><div class="Q"></div></div>
+  <div class="letter lR"><div class="R"></div></div>
+  <div class="letter lS"><div class="S"></div></div>
+  <div class="letter lT"><div class="T"></div></div>
+  <div class="letter lU"><div class="U"></div></div>
+  <div class="letter lV"><div class="V"></div></div>
+  <div class="letter lW"><div class="W"></div></div>
+  <div class="letter lX"><div class="X"></div></div>
+  <div class="letter lY"><div class="Y"></div></div>
+  <div class="letter lZ"><div class="Z"></div></div>
+</div>
+
+
+<script>
+
+var source =`
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+.letter { 
+  width: {{width}}%;
+  height: {{height}}px;
+  margin: 3px;
+  display: inline-block;
+  min-height: 15px;
+  min-width: 15px;
+}
+.lI { width:{{math width "/" 5}}%; }
+.lQ {width:{{math width "*" 1.1}}%; }
+.lW, .lW, .lM { width:{{math width "*" 1.75}}%; }
+
+
+.A {
+  position: relative;
+  height: 100%;
+  border-width: {{border}}px {{border}}px 0px {{border}}px;
+  border-style: solid;
+  border-radius: {{radius}}px {{radius}}px 0 0;
+}
+.A:before {
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: {{border}}px;
+  border-top: {{border}}px solid;
+}
+.B {
+  position: relative;
+  height: 100%;
+}
+.B:before {
+  position: absolute;
+  content: '';
+  top: calc(50% - {{math border "/" 2}}px);
+  left: 0;
+  width: 100%;
+  height: calc(50% + {{math border "/" 2}}px);
+  border-width: {{border}}px;
+  border-radius: 0 {{radius}}px {{radius}}px 0 ;
+  border-style: solid;
+}
+.B:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  width: 100%;
+  left: 0;
+  height: calc(50% + {{math border "/" 2}}px);
+  border-width: {{border}}px;
+  border-radius: 0 {{radius}}px {{radius}}px 0 ;
+  border-style: solid;
+}
+.C {
+  position: relative;
+  width: calc(100% + {{border}}px);
+  top: 0;
+  height: 50%;
+  transform: translate(0,50%);
+  border-left: solid {{border}}px;
+}
+.C:after {
+  position: absolute;
+  content: '';
+  top: -50%;
+  left: -{{border}}px;
+  width: 100%;
+  height: calc(50% + 1px);
+  border-width: {{border}}px {{border}}px 0px {{border}}px;
+  border-style: solid;
+  border-radius: {{radius}}px {{radius}}px 0 0 ;
+}
+.C:before {
+  position: absolute;
+  content: '';
+  bottom: -50%;
+  left: -{{border}}px;
+  width: 100%;
+  height: calc(50% + 1px);
+  border-width: 0px {{border}}px {{border}}px {{border}}px;
+  border-style: solid;
+  border-radius: 0 0 {{radius}}px {{radius}}px;
+}
+.D {
+  position: relative;
+  height: 100%;
+}
+.D:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-width: {{border}}px;
+  border-radius: 0 {{radius}}px {{radius}}px 0 ;
+  border-style: solid;
+}
+.E {
+  position: relative;
+  height: 100%;
+  border-width: {{border}}px 0 {{border}}px {{border}}px;
+  border-style: solid;
+}
+.E:before {
+  position: absolute;
+  content: '';
+  top: calc(50% - {{math border "/" 2}}px);
+  left: 0px;
+  width: 75%;
+  border-bottom: solid {{border}}px;
+}
+.F {
+  position: relative;
+  height: 100%;
+  border-width: {{border}}px 0 0 {{border}}px;
+  border-style: solid;
+}
+.F:before {
+  position: absolute;
+  content: '';
+  top: calc(50% - {{border}}px);
+  left: 0;
+  width: 75%;
+  height: {{border}}px;
+  border-bottom: solid {{border}}px;
+}
+.G {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  border-width: 0 0 {{border}}px {{border}}px;
+  border-style: solid;
+  border-radius: {{radius}}px 0 0px  {{radius}}px ;
+}
+.G:before {
+  position: absolute;
+  content: '';
+  bottom: -{{border}}px;
+  top: calc(50% + {{math border "/" 2}}px);
+  left: calc(100%);
+  width: calc(100% + {{border}}px);
+  height: calc(50% + {{math border "/" 2}}px);
+  border-width: {{border}}px {{border}}px {{border}}px 0;
+  border-style: solid;
+  border-radius: 0 0 {{radius}}px 0;
+}
+.G:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: -{{border}}px;
+  width: calc(200% + {{math border "*" 2}}px);
+  height: 25%;
+  border-width: {{border}}px {{border}}px 0px {{border}}px;
+  border-style: solid;
+  border-radius: {{radius}}px {{radius}}px 0 0 ;
+}
+.H {
+  position: relative;
+  height: 100%;
+  border-width: 0 {{border}}px 0px {{border}}px;
+  border-style: solid;
+}
+.H:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(50% + {{math border "/" 2}}px);
+  border-width: 0 0 {{border}}px 0;
+  border-style: solid;
+}
+.I {
+  position: relative;
+  height: 100%;
+  border-left: solid {{border}}px;
+}
+.J {
+  position: relative;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 66.666%;
+  border-right: {{border}}px solid;
+}
+.J:before {
+  position: absolute;
+  content: '';
+  bottom: -50%;
+  right: -{{border}}px;
+  width: calc(100% + {{border}}px);
+  height: calc(50% + 1px);
+  border-width: 0px {{border}}px {{border}}px {{border}}px;
+  border-style: solid;
+  border-radius: 0 0 {{math radius "*" 2}}px {{math radius "*" 2}}px;
+}
+.K {
+  position: relative;
+  height: 100%;
+}
+.K:before {
+  position: absolute;
+  content: '';
+  top: calc(50% - {{math border "/" 2}}px);
+  left: 0;
+  width: 100%;
+  height: calc(50% + {{math border "/" 2}}px);
+  border-width: {{border}}px {{border}}px 0 {{border}}px;
+  border-radius: 0 {{radius}}px 0 0 ;
+  border-style: solid;
+}
+.K:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  width: 100%;
+  left: 0;
+  height: calc(50% + {{math border "/" 2}}px);
+  border-width: 0 {{border}}px {{border}}px {{border}}px;
+  border-radius: 0 0 {{radius}}px 0 ;
+  border-style: solid;
+}
+.L {
+  position: relative;
+  height: 100%;
+  border-width: 0 0 {{border}}px {{border}}px;
+  border-style: solid;
+}
+.M {
+  position: relative;
+  height: 100%;
+}
+.M:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: calc(50% + {{math border "/" 2}}px);
+  height: 100%;
+  border-width: {{border}}px {{border}}px 0 {{border}}px;
+  border-radius: {{radius}}px {{radius}}px 0 0 ;
+  border-style: solid;
+}
+.M:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: calc(50% - {{math border "/" 2}}px);
+  width: calc(50% + {{math border "/" 2}}px);
+  height: 100%;
+  border-width: {{border}}px {{border}}px 0 {{border}}px;
+  border-radius: {{radius}}px {{radius}}px 0 0 ;
+  border-style: solid;
+}
+.N {
+  position: relative;
+  height: 100%;
+}
+.N:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-width: {{border}}px {{border}}px 0 {{border}}px;
+  border-radius: 0px {{radius}}px 0 0 ;
+  border-style: solid;
+}
+.O {
+  position: relative;
+  height: 100%;
+}
+.O:before {
+  position: absolute;
+  content: '';
+  top: -2px;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 4px);
+  border-width: {{border}}px;
+  border-radius: {{radius}}px;
+  border-style: solid;
+}
+.P {
+  position: relative;
+  height: 100%;
+}
+.P:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  width: 100%;
+  left: 0;
+  height: calc(50% +  {{math border "/" 2}}px);
+  border-width: {{border}}px;
+  border-radius: 0 {{radius}}px {{radius}}px 0 ;
+  border-style: solid;
+}
+.P:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  width: {{border}}px;
+  left: 0;
+  height: 100%;
+  border-left: solid {{border}}px;
+}
+.Q {
+  position: relative;
+  height: 100%;
+}
+.Q:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: calc(100% - {{math border "/" 2}}px);
+  height: 100%;
+  border-width: {{border}}px;
+  border-radius: {{radius}}px;
+  border-style: solid;
+}
+.Q:after {
+  position: absolute;
+  content: '';
+  bottom: 0;
+  right: 0;
+  width: calc(50% + 3.75px);
+  height: 0;
+  border-top: solid {{border}}px;
+}
+.R {
+  position: relative;
+  height: 100%
+}
+.R:before {
+  position: absolute;
+  content: '';
+  top: calc(50% - {{math border "/" 2}}px);
+  left: 0;
+  width: 100%;
+  height: calc(50% + {{math border "/" 2}}px);
+  border-width: {{border}}px {{border}}px 0 {{border}}px;
+  border-radius: 0 {{radius}}px 0 0 ;
+  border-style: solid;
+}
+.R:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  width: 100%;
+  left: 0;
+  height: calc(50% + {{math border "/" 2}}px);
+  border-width: {{border}}px;
+  border-radius: 0 {{radius}}px {{radius}}px 0 ;
+  border-style: solid;
+}
+.S {
+  position: relative;
+  height: 100%;
+  background: none;
+  border-top: {{border}}px solid;
+  border-bottom: {{border}}px solid;
+  border-radius: {{radius}}px 0 {{radius}}px 0;
+}
+.S:before {
+  position: absolute;
+  content: '';
+  top: -{{border}}px;
+  left: 0;
+  width: calc(50% + {{math border "/" 4}}px);
+  height: calc(50% + {{border}}px + {{math border "/" 2}}px);
+  border-width: {{border}}px 0 {{border}}px {{border}}px;
+  border-radius: {{radius}}px 0 0 {{radius}}px;
+  border-style: solid;
+}
+.S:after {
+  position: absolute;
+  content: '';
+  top: calc(50% - {{math border "/" 2}}px);
+  right: 0;
+  width: calc(50% + {{math border "/" 4}}px);
+  height: calc(50% + {{border}}px + {{math border "/" 2}}px);
+  border-width: {{border}}px {{border}}px {{border}}px 0;
+  border-radius: 0 {{radius}}px {{radius}}px 0;
+  border-style: solid;
+}
+.T {
+  position: relative;
+  height: 100%;
+}
+.T:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-width: {{border}}px 0 0 0 ;
+  border-style: solid;
+}
+.T:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: calc(50% + {{math border "/" 2}}px);
+  border-width: 0 {{border}}px 0 0;
+  border-style: solid;
+}
+.U {
+  position: relative;
+  height: 100%;
+}
+.U:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-width: 0 {{border}}px {{border}}px {{border}}px;
+  border-radius: 0 0 {{radius}}px {{radius}}px;
+  border-style: solid;
+}
+.V {
+  position: relative;
+  height: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  border-left: {{border}}px solid;
+}
+.V:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-width: 0 {{border}}px {{border}}px 0;
+  border-radius: 0 0 {{radius}}px 0;
+  border-style: solid;
+}
+.W {
+  position: relative;
+  height: 100%;
+}
+.W:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: calc(50% + {{math border "/" 2}}px);
+  height: 100%;
+  border-width: 0 {{border}}px {{border}}px {{border}}px;
+  border-radius: 0 0 {{radius}}px {{radius}}px;
+  border-style: solid;
+}
+.W:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: calc(50% - {{math border "/" 2}}px);
+  width: calc(50% + {{math border "/" 2}}px);
+  height: 100%;
+  border-width: 0 {{border}}px {{border}}px {{border}}px;
+  border-radius: 0 0 {{radius}}px {{radius}}px;
+  border-style: solid;
+}
+.X {
+  position: relative;
+  height: 100%;
+}
+.X:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(50% + {{math border "/" 2}}px);
+  border-width: 0 {{border}}px {{border}}px {{border}}px;
+  border-radius: 0 0 {{radius}}px {{radius}}px;
+  border-style: solid;
+}
+.X:after {
+  position: absolute;
+  content: '';
+  top: calc(50% - {{math border "/" 2}}px);
+  left: 0;
+  width: 100%;
+  height: calc(50% + {{math border "/" 2}}px);
+  border-width: {{border}}px {{border}}px 0 {{border}}px;
+  border-radius: {{radius}}px {{radius}}px 0 0 ;
+  border-style: solid;
+}
+.Y {
+  position: relative;
+  height: 75%;
+  width: 100%;
+  border-right: solid {{border}}px;
+}
+.Y:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  right: -{{border}}px;
+  width: calc(100% + {{border}}px);
+  height: calc(75% - 3.75px);
+  border-width: 0 {{border}}px {{border}}px {{border}}px;
+  border-radius: 0 0 {{radius}}px {{radius}}px;
+  border-style: solid;
+}
+.Y:after {
+  position: absolute;
+  content: '';
+  bottom: -33%;
+  right: -{{border}}px;
+  width: calc(100% + {{border}}px);
+  height: 50%;
+  border-width: 0 {{border}}px {{border}}px {{border}}px;
+  border-radius: 0 0 {{radius}}px {{radius}}px;
+  border-style: solid;
+}
+.Z {
+  position: relative;
+  height: 100%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  border-top: {{border}}px solid;
+  border-bottom: {{border}}px solid;
+}
+.Z:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: calc(50% + {{math border "/" 2}}px);
+  border-width: 0 {{border}}px {{border}}px 0 ;
+  border-radius: 0 0 {{radius}}px 0;
+  border-style: solid;
+}
+.Z:after {
+  position: absolute;
+  content: '';
+  top: calc(50% - {{math border "/" 2}}px);
+  left: 0;
+  width: 50%;
+  height: calc(50% + {{math border "/" 2}}px);
+  border-width: {{border}}px 0 0 {{border}}px;
+  border-radius: {{radius}}px 0 0 0;
+  border-style: solid;
+}
+`;
+</script>
+
+
+
+
+
+
+<script>
+$( function() {
+
+  Handlebars.registerHelper("math", function(lvalue, operator, rvalue, options) {
+    lvalue = parseFloat(lvalue);
+    rvalue = parseFloat(rvalue);
+    return {
+        "+": lvalue + rvalue,
+        "-": lvalue - rvalue,
+        "*": lvalue * rvalue,
+        "/": lvalue / rvalue,
+        "%": lvalue % rvalue,
+    }[operator];
+  });
+
+  Handlebars.registerHelper("angle", function(width, height, options) {
+    width = parseFloat(width);
+    height = parseFloat(height);
+    return Math.atan( width / height ) * 180 * Math.PI;
+  });
+
+  var template = Handlebars.compile(source); 
+  var datum = { border: '10', radius: '20', height: '100', width: '3' }
+  jQuery('#style').html(template(datum));
+
+  $('#text').on('keyup',function() {
+    let text = $('#text').val();
+    text = text.toUpperCase();
+    text = text.split('');
+
+    var output = text.reduce(function(previous, current, index, array) {
+      return previous + '<div class="letter l'+ current +'"><div class="'+ current +'"></div></div>';
+    }, '')
+    $('#grid').html( output );
+    $('.letter').resizable().draggable();
+
+  });
+
+  $('.letter').resizable().draggable();
+
+  $( "#slider-radius" ).slider({
+    min: 1,
+    max: 200,
+    value: 10,
+    slide: function( event, ui ) {
+      datum.radius = ui.value;
+      jQuery('#style').html(template(datum));      
+    }
+  });
+  $( "#radius" ).html( $( "#slider-radius" ).slider( "value" ) );
+
+  $( "#slider-border" ).slider({
+    min: 1,
+    max: 75,
+    value: 10,
+    slide: function( event, ui ) {
+      $( "#border" ).html( ui.value );
+      datum.border = ui.value;
+      jQuery('#style').html(template(datum));      
+    }
+  });
+  $( "#border" ).html( $( "#slider-border" ).slider( "value" ) );
+
+  $( "#slider-height" ).slider({
+    min: 15,
+    max: 1000,
+    value: 100,
+    slide: function( event, ui ) {
+      $( "#height" ).html( ui.value );
+      datum.height = ui.value;
+      jQuery('#style').html(template(datum));      
+    }
+  });
+  $( "#height" ).html( $( "#slider-height" ).slider( "value" ) );
+
+  $( "#slider-width" ).slider({
+    min: 1,
+    max: 49,
+    value: 3,
+    slide: function( event, ui ) {
+      $( "#width" ).html( ui.value );
+      datum.width = ui.value;
+      jQuery('#style').html(template(datum));      
+    }
+  });
+  $( "#width" ).html( $( "#slider-width" ).slider( "value" ) );
+
+
+});
+</script>
+
+</body>
+</html>

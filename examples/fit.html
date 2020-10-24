@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link href = "../lib/jquery-ui.min.css" rel = "stylesheet">
+  <link rel="stylesheet"type="text/css" href="../css/gaspipe.css" />
+  <style>
+     body {background: #aef; }
+    .letter div, .letter div:before, .letter div:after { border-color: #fff; }
+     #grid {
+      display: flex;
+      flex-wrap: nowrap;
+     }
+    .letter {       
+      height: calc(100vh - 45px); 
+      margin: 2px;
+      min-height: 50px;
+      flex: 1;
+    }
+    .letter div, .letter div:before, .letter div:after { border-color: #00f; }
+    .lI { flex: .25; }
+    .lQ { flex: 1.25; }
+    .lW, .lM { flex: 1.75; }
+    #text { margin: 0; width: 100%; height: 24px; border: 1px solid #aaa; background: inherit; }
+  </style>
+  <script src="../lib/jquery.min.js"></script>
+</head>
+<body>
+
+<input type="text" id="text" placeholder="Resize the browser window. Or type Your Message Here">
+
+<div id="grid">
+
+  <div class="letter"><div class="B"></div></div>
+  <div class="letter"><div class="E"></div></div>
+
+  <div class="letter"><div class=" "></div></div>
+
+  <div class="letter"><div class="L"></div></div>
+  <div class="letter lI"><div class="I"></div></div>
+  <div class="letter"><div class="K"></div></div>
+  <div class="letter"><div class="E"></div></div>
+
+  <div class="letter"><div class=" "></div></div>
+
+  <div class="letter lW"><div class="W"></div></div>
+  <div class="letter"><div class="A"></div></div>
+  <div class="letter"><div class="T"></div></div>
+  <div class="letter"><div class="E"></div></div>
+  <div class="letter"><div class="R"></div></div>
+
+</div>
+
+
+<script>
+$( function() {
+
+  $('#text').on('keyup',function() {
+    let text = $('#text').val();
+    text = text.toUpperCase();
+    text = text.split('');
+    var output = text.reduce(function(previous, current, index, array) {
+      return previous + '<div class="letter l'+ current +'"><div class="'+ current +'"></div></div>';
+    }, '')
+    $('#grid').html( output );
+  });
+});
+</script>
+</body>
+</html>

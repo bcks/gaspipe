@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link href = "../lib/jquery-ui.min.css" rel = "stylesheet">
+  <link rel="stylesheet"type="text/css" href="../css/gaspipe.css" />
+  <style>
+     body { margin: 0; padding: 0; background: #eec; }
+    .letter div, .letter div:before, .letter div:after { border-color: #990; }
+    .letter { 
+      width: 40px;
+      height: 100px; 
+      margin: 2px;
+      display: inline-block;
+      min-height: 50px;
+      min-width: 40px;
+    }
+    .lI { min-width: 20px; width: 20px; }
+    .lQ { width: 45px; }
+    .lW, .lW, .lM { width: 60px; }
+    .ui-icon{
+      background-image:url("../lib/images/ui-icons_cc0000_256x240.png");
+    }
+    .ui-icon-gripsmall-diagonal-se {
+      opacity: 0;
+      transition: .25s opacity;
+    }
+    .letter:hover .ui-icon-gripsmall-diagonal-se {
+      opacity: 1;
+    }
+    #text { width: calc(100% - 6px); background: inherit;}
+  </style>
+  <script src="../lib/jquery.min.js"></script>
+  <script src="../lib/jquery-ui.min.js"></script>
+</head>
+<body>
+
+<input type="text" id="text" placeholder="Type Your Message Here">
+
+<div id="grid">
+
+  <div class="letter lC"><div class="C"></div></div>
+  <div class="letter lL"><div class="L"></div></div>
+  <div class="letter lI"><div class="I"></div></div>
+  <div class="letter lC"><div class="C"></div></div>
+  <div class="letter lK"><div class="K"></div></div>
+
+  <div class="letter l "><div class=" "></div></div>
+
+  <div class="letter lA"><div class="A"></div></div>
+  <div class="letter lN"><div class="N"></div></div>
+  <div class="letter lD"><div class="D"></div></div>
+
+  <div class="letter l "><div class=" "></div></div>
+
+  <div class="letter lD"><div class="D"></div></div>
+  <div class="letter lR"><div class="R"></div></div>
+  <div class="letter lA"><div class="A"></div></div>
+  <div class="letter lG"><div class="G"></div></div>
+
+  <div class="letter l "><div class=" "></div></div>
+
+  <div class="letter lA"><div class="A"></div></div>
+  <div class="letter lN"><div class="N"></div></div>
+  <div class="letter lD"><div class="D"></div></div>
+
+  <div class="letter l "><div class=" "></div></div>
+
+  <div class="letter lS"><div class="S"></div></div>
+  <div class="letter lT"><div class="T"></div></div>
+  <div class="letter lR"><div class="R"></div></div>
+  <div class="letter lT"><div class="E"></div></div>
+  <div class="letter lT"><div class="T"></div></div>
+  <div class="letter lC"><div class="C"></div></div>
+  <div class="letter lH"><div class="H"></div></div>
+
+</div>
+
+
+
+<script>
+$( function() {
+
+  $('#text').on('keyup',function() {
+    let text = $('#text').val();
+    text = text.toUpperCase();
+    text = text.split('');
+
+    var output = text.reduce(function(previous, current, index, array) {
+      return previous + '<div class="letter l'+ current +'"><div class="'+ current +'"></div></div>';
+    }, '')
+    $('#grid').html( output );
+    $('.letter').resizable().draggable();
+
+  });
+  
+  $('.letter').resizable().draggable();
+
+});
+</script>
+
+</body>
+</html>
