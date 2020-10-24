@@ -1,10 +1,16 @@
 # gaspipe
 A pure CSS variable gaspipe font
 
-Control height and width.
+Control height and width,
 
 ![](img/water.gif)
 
-Or border width and corner angle
+Border thickness,
 
 ![](img/breathe.gif)
+
+Or corner angle.
+
+![](img/maskup.gif)
+
+See the [examples](examples) folder for more fun.
