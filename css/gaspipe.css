@@ -120,7 +120,7 @@ html {
   position: absolute;
   content: '';
   top: calc(50% - var(--border) );
-  left: 0;
+  left: -1px;
   width: 75%;
   border-bottom: solid var(--border);
 }
