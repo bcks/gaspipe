@@ -20,8 +20,8 @@ html {
   position: absolute;
   content: '';
   top: calc( 50% - var(--border) );
-  left: 0;
-  width: 100%;
+  left: -1px;
+  width: calc(100% + 2px);
   height: var(--border);
   border-top: var(--border) solid;
 }
@@ -106,7 +106,7 @@ html {
   position: absolute;
   content: '';
   top: calc(50% - var(--border) / 2 );
-  left: 0;
+  left: -1px;
   width: 75%;
   border-bottom: solid var(--border);
 }
@@ -165,8 +165,8 @@ html {
   position: absolute;
   content: '';
   top: 0;
-  left: 0;
-  width: 100%;
+  left: -1px;
+  width: calc(100% + 2px);
   height: calc(50% + calc( var(--border) / 2 ) ););
   border-width: 0 0 var(--border) 0;
   border-style: solid;
