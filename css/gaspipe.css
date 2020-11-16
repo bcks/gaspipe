@@ -557,18 +557,17 @@ html {
 
 .Y {
   position: relative;
-  height: 75%;
+  height: 100%;
   width: 100%;
-  border-right: var(--border) solid;
 }
 
 .Y:before {
   position: absolute;
   content: '';
   top: 0;
-  right: calc( var(--border) * -1 );
-  width: calc(100% + var(--border));
-  height: calc(75% - calc(var(--border) / 3 ));
+  left: 0;
+  width: 100%;
+  height: 66.666%;
   border-width: 0 var(--border) var(--border) var(--border);
   border-radius: 0 0 var(--radius) var(--radius);
   border-style: solid;
@@ -577,12 +576,10 @@ html {
 .Y:after {
   position: absolute;
   content: '';
-  bottom: -33%;
-  right: calc( var(--border) * -1 );
-  width: calc(100% + calc( var(--border) / 2 ));
-  height: 50%;
-  border-width: 0 var(--border) var(--border) var(--border);
-  border-radius: 0 0 var(--radius) var(--radius);
+  top: calc(66.666% - 1px);
+  left: calc(50% - calc(var(--border) / 2 ));
+  height: calc(33.333% + 1px);
+  border-width: 0 var(--border) 0 0;
   border-style: solid;
 }
 
